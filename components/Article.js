@@ -128,4 +128,6 @@ function articleMaker(artObj){
   article.appendChild(artPara2);
   article.appendChild(artPara3);
   article.appendChild(artButton);
+
+  article
 }
