@@ -115,19 +115,56 @@ const data = [
   Refresh the page to see the new article.
 */
 
-function articleMaker(artObj){
-  const article = document.createElement('div');
+function articleMaker(data){
+  const articleContainer = document.createElement('div');
+  articleContainer.classList.add("article");
+
   const artTitle = document.createElement('h2');
+  artTitle.textContent = (data.title);
+  articleContainer.appendChild(artTitle);
+
+  const artDate = document.createElement('p');
+  artDate.textContent = (data.date);
+  articleContainer.appendChild(artDate);
+
   const artPara1 = document.createElement('p');
+  artPara1.textContent = (data.firstParagraph);
+  articleContainer.appendChild(artPara1);
+
   const artPara2 = document.createElement('p');
+  artPara2.textContent = (data.secondParagraph);
+  articleContainer.appendChild(artPara2);
+
   const artPara3 = document.createElement('p');
-  const artButton = document.createElement('button');
+  artPara3.textContent = (data.thirdParagraph);
+  articleContainer.appendChild(artPara3);
 
-  article.appendChild(artTitle);
-  article.appendChild(artPara1);
-  article.appendChild(artPara2);
-  article.appendChild(artPara3);
-  article.appendChild(artButton);
+  const artSpan = document.createElement('span');
+  artSpan.classList.add('expandButton');
+  artSpan.textContent = "+";
+  artSpan.addEventListener('click', () => {
+    articleContainer.classList.toggle('article-open')
+  });
 
-  article
+  articleContainer.appendChild(artSpan);
+
+  return articleContainer
+  
 }
+
+const newArt = {
+  title: "Hello",
+  date: 'May 23, 2018',
+  firstParagraph: "Little princess was born",
+  secondParagraph: "Big bothers were created",
+  thirdParagraph: "Brothers love their sister"
+}
+
+data.push(newArt)
+
+
+let articles = document.querySelector('.articles')
+
+data.forEach((article) => {
+  articles.appendChild(articleMaker(article))
+})
